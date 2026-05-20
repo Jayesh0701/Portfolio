@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FaGithub,
   FaLinkedin,
@@ -7,7 +8,45 @@ import {
   FaCode,
   FaRobot,
 } from "react-icons/fa";
-import { Typewriter } from "react-simple-typewriter";
+
+const themes = {
+  dark: {
+    bg: "bg-slate-950",
+    text: "text-white",
+    card: "bg-white/5 border-white/10",
+    accent: "text-cyan-400",
+    button: "bg-cyan-500 hover:bg-cyan-600",
+    nav: "bg-slate-950/80",
+    badge: "bg-slate-800",
+  },
+  purple: {
+    bg: "bg-[#12001f]",
+    text: "text-white",
+    card: "bg-purple-500/10 border-purple-400/20",
+    accent: "text-purple-300",
+    button: "bg-purple-500 hover:bg-purple-600",
+    nav: "bg-[#12001f]/80",
+    badge: "bg-purple-900/50",
+  },
+  emerald: {
+    bg: "bg-[#021c16]",
+    text: "text-white",
+    card: "bg-emerald-500/10 border-emerald-400/20",
+    accent: "text-emerald-300",
+    button: "bg-emerald-500 hover:bg-emerald-600",
+    nav: "bg-[#021c16]/80",
+    badge: "bg-emerald-900/40",
+  },
+  light: {
+    bg: "bg-slate-100",
+    text: "text-slate-950",
+    card: "bg-white border-slate-200",
+    accent: "text-blue-600",
+    button: "bg-blue-600 hover:bg-blue-700",
+    nav: "bg-white/80",
+    badge: "bg-slate-200",
+  },
+};
 
 const journey = [
   {
@@ -16,38 +55,38 @@ const journey = [
     place: "SST College, University of Mumbai",
     icon: <FaGraduationCap />,
     story:
-      "Completed Bachelor of Science in Information Technology, building a strong foundation in programming, databases, software development, and problem-solving.",
+      "Completed Bachelor of Science in Information Technology, building a strong foundation in programming, databases, web development, and software engineering.",
     highlights: ["BSc IT", "CGPI: 9.20 / 10", "Programming Fundamentals", "Database Concepts"],
     tech: ["C#", "SQL", "JavaScript", "Web Development"],
   },
   {
     year: "August 2021",
-    title: "Started Professional Journey",
+    title: "Started as Junior Developer",
     place: "TSS Consultancy - TrackWizz",
     icon: <FaBriefcase />,
     story:
-      "Joined as a Junior Developer in a product-based company and worked on the Employee Trade Tracking product, gaining real enterprise product development experience.",
+      "Joined a product-based company and started working on the Employee Trade Tracking product, gaining hands-on experience in enterprise product development.",
     highlights: [
       "Worked on ETT product",
       "Built enterprise features",
-      "Handled production fixes",
+      "Fixed production issues",
       "Worked with QA, BA, and product teams",
     ],
     tech: [".NET Framework", ".NET Core", "AngularJS", "Angular", "MS SQL Server"],
   },
   {
     year: "2021 - 2023",
-    title: "Growing as an Enterprise Developer",
+    title: "Enterprise Product Development",
     place: "TSS Consultancy - TrackWizz",
     icon: <FaCode />,
     story:
-      "Contributed to backend services, authentication workflows, SQL optimization, and frontend enhancements. This phase helped me understand enterprise-grade coding, product stability, and scalable application development.",
+      "Worked across backend services, frontend enhancements, authentication workflows, SQL optimization, and enterprise-grade application stability.",
     highlights: [
       "Developed ASP.NET web services",
       "Implemented Google SSO",
       "Optimized SQL queries and stored procedures",
-      "Improved SonarQube code quality issues",
-      "Supported sprint-based delivery",
+      "Resolved SonarQube issues",
+      "Supported Agile delivery",
     ],
     tech: ["C#", "ASP.NET Web API", "Angular", "AngularJS", "SQL Server", "SonarQube"],
   },
@@ -57,13 +96,13 @@ const journey = [
     place: "Senior Software Developer",
     icon: <FaBriefcase />,
     story:
-      "Moved into a broader backend and enterprise development role, working across internal business systems, reporting platforms, CRM integrations, backend APIs, and automation tools.",
+      "Moved into a broader backend and enterprise development role, working on internal systems, reporting platforms, CRM integrations, backend APIs, and automation tools.",
     highlights: [
-      "Maintained internal enterprise products",
+      "Maintained enterprise applications",
       "Built reporting workflows",
       "Resolved production-level issues",
-      "Collaborated with business users",
-      "Mentored developers and supported delivery",
+      "Worked with business stakeholders",
+      "Mentored developers",
     ],
     tech: [".NET Core", "Angular", "AngularJS", "MS SQL Server", "RDLC", "SSRS"],
   },
@@ -73,12 +112,12 @@ const journey = [
     place: "Marcus Evans",
     icon: <FaCode />,
     story:
-      "Expanded into modern backend engineering using Python, FastAPI, MongoDB, Docker, Azure Service Bus, and real-time communication workflows.",
+      "Expanded into modern backend engineering using Python, FastAPI, MongoDB, Docker, Azure Service Bus, WebSocket, and Server-Sent Events.",
     highlights: [
       "Built New Hire Tracker using FastAPI",
-      "Created backend APIs for internal mobile applications",
-      "Integrated HubSpot CRM with internal systems",
-      "Worked on WebSocket and SSE based communication",
+      "Created APIs for internal mobile applications",
+      "Integrated HubSpot CRM",
+      "Worked on WebSocket and SSE workflows",
       "Designed async messaging workflows",
     ],
     tech: ["Python", "FastAPI", "MongoDB", "Docker", "Azure Service Bus", "WebSocket", "SSE"],
@@ -89,7 +128,7 @@ const journey = [
     place: "GenAI Systems & Real-Time Workflows",
     icon: <FaRobot />,
     story:
-      "Currently focusing on AI-driven backend systems, RAG platforms, voice AI workflows, real-time audio streaming, transcription pipelines, and intelligent business automation.",
+      "Currently focusing on AI-driven backend systems, RAG platforms, voice AI workflows, transcription pipelines, and intelligent business automation.",
     highlights: [
       "Worked on RAG-powered client intelligence platform",
       "Used GPT-4 and Azure Speech Services",
@@ -106,7 +145,7 @@ const projects = [
     title: "Employee Trade Tracking Product",
     period: "TSS Consultancy",
     desc:
-      "Enterprise product built for employee trade compliance workflows, where I worked on frontend features, backend services, authentication, SQL optimization, and product stability.",
+      "Enterprise product for employee trade compliance workflows, where I worked on frontend features, backend services, authentication, SQL optimization, and product stability.",
     tech: [".NET Framework", "AngularJS", "Angular", "MS SQL Server"],
   },
   {
@@ -127,14 +166,14 @@ const projects = [
     title: "Enterprise Reporting & CMS Platform",
     period: "Marcus Evans",
     desc:
-      "Enhanced enterprise CMS and reporting systems using .NET Core, Angular, SQL Server, SSRS, and RDLC reports while improving reporting accuracy and backend performance.",
+      "Enhanced enterprise CMS and reporting systems using .NET Core, Angular, SQL Server, SSRS, and RDLC reports while improving backend performance.",
     tech: [".NET Core", "Angular", "SQL Server", "SSRS", "RDLC"],
   },
   {
     title: "Client Intelligence & RAG Platform",
     period: "GenAI Systems",
     desc:
-      "AI-powered business intelligence platform combining call transcripts, CRM data, GPT-4, Azure Speech, and RAG pipelines to generate actionable business insights.",
+      "AI-powered business intelligence platform combining call transcripts, CRM data, GPT-4, Azure Speech, and RAG pipelines to generate business insights.",
     tech: ["OpenAI", "RAG", "GPT-4", "Azure Speech", "Python"],
   },
   {
@@ -147,58 +186,57 @@ const projects = [
 ];
 
 export default function App() {
+  const [themeName, setThemeName] = useState("dark");
+  const theme = themes[themeName];
+
   return (
-    <main className="min-h-screen bg-slate-950 text-white overflow-hidden">
-      <nav className="fixed top-0 w-full bg-slate-950/80 backdrop-blur border-b border-white/10 z-50">
+    <main className={`min-h-screen ${theme.bg} ${theme.text} overflow-hidden transition-colors duration-500`}>
+      <nav className={`fixed top-0 w-full ${theme.nav} backdrop-blur border-b border-white/10 z-50`}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#home" className="text-xl font-bold text-cyan-400">
+          <a href="#home" className={`text-xl font-bold ${theme.accent}`}>
             Jayesh Rajput
           </a>
 
-          <div className="hidden md:flex gap-6 text-sm text-slate-300">
-            <a href="#journey" className="hover:text-cyan-400">Journey</a>
-            <a href="#projects" className="hover:text-cyan-400">Projects</a>
-            <a href="#skills" className="hover:text-cyan-400">Skills</a>
-            <a href="#contact" className="hover:text-cyan-400">Contact</a>
+          <div className="hidden md:flex gap-6 text-sm items-center">
+            <a href="#journey" className="hover:opacity-70">Journey</a>
+            <a href="#projects" className="hover:opacity-70">Projects</a>
+            <a href="#skills" className="hover:opacity-70">Skills</a>
+            <a href="#contact" className="hover:opacity-70">Contact</a>
+
+            <select
+              value={themeName}
+              onChange={(e) => setThemeName(e.target.value)}
+              className="bg-slate-900 text-white border border-white/10 rounded-lg px-3 py-2 outline-none"
+            >
+              <option value="dark">Dark</option>
+              <option value="purple">Purple</option>
+              <option value="emerald">Emerald</option>
+              <option value="light">Light</option>
+            </select>
           </div>
         </div>
       </nav>
 
-      <section
-        id="home"
-        className="min-h-screen flex items-center justify-center px-6 pt-24 relative"
-      >
+      <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-24 relative">
         <div className="absolute top-24 left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl" />
 
         <div className="max-w-5xl text-center relative z-10">
-          <p className="text-cyan-400 mb-4 text-lg tracking-wide">
-            My journey from graduate to backend engineer
+          <p className={`${theme.accent} mb-4 text-lg tracking-wide`}>
+            Hello, I am
           </p>
 
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 text-transparent bg-clip-text min-h-[95px]">
-            <Typewriter
-              words={[
-                "Jayesh Rajput",
-                "Backend Developer",
-                "Python FastAPI Engineer",
-                ".NET Core Developer",
-                "AI Integration Engineer",
-              ]}
-              loop
-              cursor
-              cursorStyle="|"
-              typeSpeed={70}
-              deleteSpeed={45}
-              delaySpeed={1800}
-            />
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight py-3">
+            <span className="inline-block animate-slideIn bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 text-transparent bg-clip-text">
+              Jayesh Rajput
+            </span>
           </h1>
 
-          <h2 className="text-2xl md:text-3xl mt-6 text-slate-200">
+          <h2 className="text-2xl md:text-3xl mt-6">
             Backend Developer | Python FastAPI | .NET Core | AI Integrations
           </h2>
 
-          <p className="mt-6 text-slate-400 leading-8 max-w-4xl mx-auto">
+          <p className="mt-6 opacity-80 leading-8 max-w-4xl mx-auto">
             I build scalable enterprise APIs, backend systems, real-time workflows,
             reporting platforms, and AI-powered automation using Python, FastAPI,
             .NET Core, SQL Server, MongoDB, Azure Service Bus, WebSocket, SSE,
@@ -208,14 +246,14 @@ export default function App() {
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a
               href="#journey"
-              className="px-7 py-3 bg-cyan-500 hover:bg-cyan-600 rounded-lg font-medium transition"
+              className={`px-7 py-3 ${theme.button} text-white rounded-lg font-medium transition`}
             >
               Explore My Journey
             </a>
 
             <a
               href="/resume.pdf"
-              className="px-7 py-3 border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white rounded-lg transition"
+              className={`px-7 py-3 border ${theme.accent} rounded-lg transition`}
             >
               Download Resume
             </a>
@@ -225,9 +263,9 @@ export default function App() {
 
       <section id="journey" className="max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-16">
-          <p className="text-cyan-400 mb-3">Career Timeline</p>
+          <p className={`${theme.accent} mb-3`}>Career Timeline</p>
           <h2 className="text-4xl md:text-5xl font-bold">My Development Journey</h2>
-          <p className="text-slate-400 mt-5 max-w-3xl mx-auto leading-7">
+          <p className="opacity-75 mt-5 max-w-3xl mx-auto leading-7">
             A story of growth from academic fundamentals to enterprise development,
             backend systems, cloud integrations, and AI-powered engineering.
           </p>
@@ -246,24 +284,22 @@ export default function App() {
               >
                 <div className="hidden md:block w-1/2" />
 
-                <div className="absolute left-0 md:left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-slate-950 border-2 border-cyan-400 flex items-center justify-center text-cyan-400 z-10">
+                <div className={`absolute left-0 md:left-1/2 -translate-x-1/2 w-9 h-9 rounded-full ${theme.bg} border-2 border-current flex items-center justify-center ${theme.accent} z-10`}>
                   {item.icon}
                 </div>
 
-                <div className="ml-12 md:ml-0 md:w-1/2 bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-cyan-500/60 transition duration-300">
-                  <p className="text-cyan-400 text-sm font-medium">{item.year}</p>
-
+                <div className={`ml-12 md:ml-0 md:w-1/2 ${theme.card} border rounded-2xl p-7 hover:-translate-y-1 transition duration-300`}>
+                  <p className={`${theme.accent} text-sm font-medium`}>{item.year}</p>
                   <h3 className="text-2xl font-bold mt-2">{item.title}</h3>
-                  <p className="text-slate-400 mt-1">{item.place}</p>
-
-                  <p className="text-slate-300 leading-7 mt-5">{item.story}</p>
+                  <p className="opacity-70 mt-1">{item.place}</p>
+                  <p className="opacity-85 leading-7 mt-5">{item.story}</p>
 
                   <div className="mt-5">
-                    <p className="text-sm text-slate-500 mb-3">Key responsibilities</p>
+                    <p className="text-sm opacity-60 mb-3">Key responsibilities</p>
                     <div className="grid sm:grid-cols-2 gap-2">
                       {item.highlights.map((point) => (
-                        <div key={point} className="text-sm text-slate-300 flex gap-2">
-                          <span className="text-cyan-400">•</span>
+                        <div key={point} className="text-sm opacity-85 flex gap-2">
+                          <span className={theme.accent}>•</span>
                           <span>{point}</span>
                         </div>
                       ))}
@@ -272,10 +308,7 @@ export default function App() {
 
                   <div className="mt-6 flex flex-wrap gap-2">
                     {item.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-slate-800/80 border border-white/10 rounded-full text-xs text-slate-300"
-                      >
+                      <span key={tech} className={`px-3 py-1 ${theme.badge} rounded-full text-xs opacity-90`}>
                         {tech}
                       </span>
                     ))}
@@ -289,9 +322,9 @@ export default function App() {
 
       <section id="projects" className="max-w-7xl mx-auto px-6 py-24">
         <div className="text-center mb-14">
-          <p className="text-cyan-400 mb-3">Project Story</p>
+          <p className={`${theme.accent} mb-3`}>Project Story</p>
           <h2 className="text-4xl md:text-5xl font-bold">Projects That Shaped My Journey</h2>
-          <p className="text-slate-400 mt-5 max-w-3xl mx-auto leading-7">
+          <p className="opacity-75 mt-5 max-w-3xl mx-auto leading-7">
             Each project represents a different stage of my growth: enterprise product
             development, backend APIs, reporting systems, automation, real-time systems,
             and AI-powered workflows.
@@ -302,23 +335,19 @@ export default function App() {
           {projects.map((project, index) => (
             <div
               key={project.title}
-              className="group bg-white/5 border border-white/10 rounded-2xl p-7 hover:-translate-y-2 hover:border-cyan-500/60 transition duration-300"
+              className={`${theme.card} border rounded-2xl p-7 hover:-translate-y-2 transition duration-300`}
             >
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5">
+              <div className={`w-12 h-12 rounded-xl ${theme.badge} border border-white/10 flex items-center justify-center ${theme.accent} mb-5`}>
                 0{index + 1}
               </div>
 
-              <p className="text-cyan-400 text-sm">{project.period}</p>
+              <p className={`${theme.accent} text-sm`}>{project.period}</p>
               <h3 className="text-xl font-bold mt-2">{project.title}</h3>
-
-              <p className="text-slate-400 mt-4 leading-7">{project.desc}</p>
+              <p className="opacity-75 mt-4 leading-7">{project.desc}</p>
 
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300"
-                  >
+                  <span key={tech} className={`px-3 py-1 ${theme.badge} rounded-full text-xs opacity-90`}>
                     {tech}
                   </span>
                 ))}
@@ -331,11 +360,11 @@ export default function App() {
       <section id="skills" className="max-w-7xl mx-auto px-6 py-24">
         <div className="grid lg:grid-cols-3 gap-8 items-start">
           <div>
-            <p className="text-cyan-400 mb-3">Technical Identity</p>
+            <p className={`${theme.accent} mb-3`}>Technical Identity</p>
             <h2 className="text-4xl font-bold leading-tight">
               Backend-first developer with full-stack understanding.
             </h2>
-            <p className="text-slate-400 mt-5 leading-7">
+            <p className="opacity-75 mt-5 leading-7">
               My strength is connecting business problems with reliable backend systems,
               clean APIs, optimized databases, automation, and modern AI integrations.
             </p>
@@ -368,17 +397,14 @@ export default function App() {
                 items: ["Docker", "Git", "Azure DevOps", "Jira", "SonarQube", "Agile"],
               },
             ].map((group) => (
-              <div key={group.title} className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                <h3 className="text-xl font-semibold text-cyan-400 mb-4">
+              <div key={group.title} className={`${theme.card} border rounded-2xl p-6`}>
+                <h3 className={`text-xl font-semibold ${theme.accent} mb-4`}>
                   {group.title}
                 </h3>
 
                 <div className="flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300"
-                    >
+                    <span key={item} className={`px-3 py-1 ${theme.badge} rounded-full text-xs opacity-90`}>
                       {item}
                     </span>
                   ))}
@@ -390,16 +416,18 @@ export default function App() {
       </section>
 
       <section id="contact" className="max-w-5xl mx-auto px-6 py-24 text-center">
-        <p className="text-cyan-400 mb-3">Let’s Build</p>
-        <h2 className="text-4xl md:text-5xl font-bold">Backend systems that solve real problems.</h2>
+        <p className={`${theme.accent} mb-3`}>Let’s Build</p>
+        <h2 className="text-4xl md:text-5xl font-bold">
+          Backend systems that solve real problems.
+        </h2>
 
-        <p className="text-slate-400 mt-5 leading-7">
+        <p className="opacity-75 mt-5 leading-7">
           Interested in backend engineering, FastAPI systems, .NET Core APIs,
           enterprise automation, real-time workflows, or AI-powered integrations.
         </p>
 
         <div className="flex justify-center gap-6 mt-8 text-3xl">
-          <a href="mailto:jayeshrajput0701@gmail.com" className="hover:text-cyan-400">
+          <a href="mailto:jayeshrajput0701@gmail.com" className="hover:opacity-70">
             <FaEnvelope />
           </a>
 
@@ -407,7 +435,7 @@ export default function App() {
             href="https://in.linkedin.com/in/jayesh-rajput-1061a5204"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-cyan-400"
+            className="hover:opacity-70"
           >
             <FaLinkedin />
           </a>
@@ -416,14 +444,14 @@ export default function App() {
             href="https://github.com/Jayesh0701"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-cyan-400"
+            className="hover:opacity-70"
           >
             <FaGithub />
           </a>
         </div>
       </section>
 
-      <footer className="border-t border-white/10 py-6 text-center text-slate-500 text-sm">
+      <footer className="border-t border-white/10 py-6 text-center opacity-60 text-sm">
         © {new Date().getFullYear()} Jayesh Rajput. Built with React & Tailwind CSS.
       </footer>
     </main>
