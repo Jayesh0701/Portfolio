@@ -173,7 +173,7 @@ export default function App() {
 
         <div className="max-w-5xl text-center relative z-10">
           <p className="text-cyan-400 mb-4 text-lg tracking-wide">
-            My journey from BSc IT graduate to backend engineer
+            My journey from graduate to backend engineer
           </p>
 
           <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 text-transparent bg-clip-text min-h-[95px]">
