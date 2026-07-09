@@ -93,7 +93,7 @@ const journey = [
   {
     year: "October 2023",
     title: "Joined Marcus Evans",
-    place: "Senior Software Developer",
+    place: "Full Stack Developer",
     icon: <FaBriefcase />,
     story:
       "Moved into a broader backend and enterprise development role, working on internal systems, reporting platforms, CRM integrations, backend APIs, and automation tools.",
