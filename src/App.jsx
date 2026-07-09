@@ -93,7 +93,7 @@ const journey = [
   {
     year: "October 2023",
     title: "Joined Marcus Evans",
-    place: "Senior Software Developer",
+    place: "Full Stack Developer",
     icon: <FaBriefcase />,
     story:
       "Moved into a broader backend and enterprise development role, working on internal systems, reporting platforms, CRM integrations, backend APIs, and automation tools.",
@@ -266,7 +266,7 @@ export default function App() {
             </a>
 
             <a
-              href="/resume.pdf"
+              href="/Jayesh_Rajput_Resume_DotNet.pdf"
               className={`px-7 py-3 border ${theme.accent} rounded-lg transition`}
             >
               Download Resume
