@@ -142,46 +142,60 @@ const journey = [
 
 const projects = [
   {
-    title: "Employee Trade Tracking Product",
-    period: "TSS Consultancy",
-    desc:
-      "Enterprise product for employee trade compliance workflows, where I worked on frontend features, backend services, authentication, SQL optimization, and product stability.",
-    tech: [".NET Framework", "AngularJS", "Angular", "MS SQL Server"],
-  },
-  {
-    title: "New Hire Tracker Platform",
+    title: "Client Analytics Portal",
     period: "Marcus Evans",
     desc:
-      "Internal HR automation platform built with FastAPI, MongoDB, and Docker to streamline onboarding tracking, role-based workflows, and internal process automation.",
-    tech: ["FastAPI", "Python", "MongoDB", "Docker"],
+      "Unified analytics portal consolidating data from two internal systems into a single reporting layer, with ABAC for fine-grained access control, Redis caching, WebSocket-based real-time sync, and embedded Apache Superset dashboards via guest-token authentication.",
+    tech: ["Python", "Redis", "WebSocket", "Apache Superset", "ABAC"],
   },
   {
-    title: "Internal Mobile Application APIs",
+    title: "Enterprise Client Intelligence & RAG Platform",
     period: "Marcus Evans",
     desc:
-      "Designed backend APIs for internal mobile and conference-related workflows with scalable REST APIs and real-time communication support.",
-    tech: [".NET Core", "FastAPI", "REST APIs", "WebSocket", "SSE"],
-  },
-  {
-    title: "Enterprise Reporting & CMS Platform",
-    period: "Marcus Evans",
-    desc:
-      "Enhanced enterprise CMS and reporting systems using .NET Core, Angular, SQL Server, SSRS, and RDLC reports while improving backend performance.",
-    tech: [".NET Core", "Angular", "SQL Server", "SSRS", "RDLC"],
-  },
-  {
-    title: "Client Intelligence & RAG Platform",
-    period: "GenAI Systems",
-    desc:
-      "AI-powered business intelligence platform combining call transcripts, CRM data, GPT-4, Azure Speech, and RAG pipelines to generate business insights.",
-    tech: ["OpenAI", "RAG", "GPT-4", "Azure Speech", "Python"],
+      "Content-aware RAG ingestion pipeline with per-file-type chunking, chunk validation, MD5-based deduplication, and a registry pattern to prevent hallucination from stale content. Hybrid vector plus keyword search with re-ranking over call transcripts and CRM data.",
+    tech: ["RAG", "GPT-4", "Azure Speech", "ADLS Gen2", "Python"],
   },
   {
     title: "Voice AI Agent",
-    period: "GenAI Systems",
+    period: "Marcus Evans",
     desc:
-      "Real-time voice AI workflow using Twilio and LiveKit for audio streaming, transcript capture, CRM-driven follow-ups, and AI-powered communication automation.",
-    tech: ["Twilio", "LiveKit", "Python", "AI", "Real-Time Streaming"],
+      "Real-time audio streaming and transcript capture workflow using Twilio and LiveKit, integrated with CRM follow-up triggers to automate post-call actions, with a zero-shot/few-shot LLM prompting layer and production retrieval-failure fixes.",
+    tech: ["Twilio", "LiveKit", "OpenAI", "Python"],
+  },
+  {
+    title: "Mobile Conference App Backend",
+    period: "Marcus Evans",
+    desc:
+      "Complete backend for an internal conference mobile application, including database schema design, optimized data retrieval procedures, a push notification service, and cloud storage management for staff and user uploads.",
+    tech: [".NET Core", "REST APIs", "SQL Server", "Push Notifications"],
+  },
+  {
+    title: "New Hire Tracker Portal",
+    period: "Marcus Evans",
+    desc:
+      "Internal onboarding tracking portal built with FastAPI and MongoDB, using Firebase Authentication and role-based access control, with Azure Active Directory integration to pull employee details and replace manual HR tracking.",
+    tech: ["FastAPI", "MongoDB", "Firebase", "RBAC", "Azure AD"],
+  },
+  {
+    title: "TAP Budgeting Tool",
+    period: "Marcus Evans",
+    desc:
+      "Sync and extraction pipeline for client financial data, pulling Excel files from SharePoint, parsing the details, and mapping them to the correct users in the database.",
+    tech: ["Python", "SharePoint", "SQL Server"],
+  },
+  {
+    title: "Linguarama Legacy Analysis",
+    period: "Marcus Evans",
+    desc:
+      "Automation scripts to render and crawl a legacy platform, extracting webpage details into Excel to scope the effort and time required to migrate the application to a new platform.",
+    tech: ["Python", "Automation", "Web Scraping"],
+  },
+  {
+    title: "Employee Trade Tracking Product",
+    period: "TSS Consultancy",
+    desc:
+      "Full-stack features for an employee trade compliance platform, including mobile-responsive UI and API layers for iOS and Android, Google SSO via OAuth 2.0, and optimized SQL Server queries and stored procedures.",
+    tech: [".NET Core", "Angular", "AngularJS", "MS SQL Server", "OAuth 2.0"],
   },
 ];
 
