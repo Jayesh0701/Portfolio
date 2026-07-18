@@ -266,7 +266,7 @@ export default function App() {
             </a>
 
             <a
-              href="/Jayesh_Rajput_Resume_DotNet.pdf"
+              href="/Jayesh_Rajput_backend_dev_17_07_2026.pdf"
               className={`px-7 py-3 border ${theme.accent} rounded-lg transition`}
             >
               Download Resume
